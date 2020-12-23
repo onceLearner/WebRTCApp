@@ -8,7 +8,7 @@ const Home = () => {
 
     const gotMedia = (stream) => {
         const peer1 = new Peer({ initiator: true, stream: stream })
-        const peer2 = new Peer({ initiator: true, stream: stream });
+        const peer2 = new Peer();
 
         peer1.on('signal', data => {
             peer2.signal(data)
