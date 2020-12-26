@@ -1,48 +1,18 @@
+import { Link } from '@reach/router'
 import React from 'react'
-import Peer from "simple-peer"
 
-
-const Home = () => {
-
-
-
-    const gotMedia = (stream) => {
-        const peer1 = new Peer({ initiator: true, stream: stream })
-        const peer2 = new Peer();
-
-        peer1.on('signal', data => {
-            peer2.signal(data)
-        })
-        peer2.on('signal', data => {
-            peer1.signal(data);
-        })
-
-        peer2.on('stream', stream => {
-            // here we got the remote stream;
-            const video = document.querySelector('video');
-            video.srcObject = stream;
-            video.play();
-        })
-    }
-    // get the user media streams
-    navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: true
-    }).then(gotMedia)
-        .catch((err) => console.error(err));
-
-
-
-
-
-
-
+function Home() {
     return (
         <div>
-            <h1>
-                hello world
+            <h1 className="text-5xl text-center">
+                Welcome
             </h1>
-            <video autoPlay />
+            <div className="flex justify-center items-center gap-10 space p-16  ">
+                <Link to="/peerImp.js" className="text-2xl ext-gray-700 hover:text-yellow-600" > <span className="font-bold text-yellow-500"> PeerJs </span>  implementation</Link>
+                <Link to="/simple" className="text-2xl text-gray-700 hover:text-green-600"  >  <span className="font-bold">Simple PeerJs</span> impelment</Link>
+
+
+            </div>
         </div>
     )
 }
