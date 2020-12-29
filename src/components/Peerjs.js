@@ -64,7 +64,9 @@ const Peerjs = () => {
 
 
     const getlistPeers = () => {
-        fetch("http://localhost:5000/peers")
+        const local_url = `http://localhost:5000/peers`;
+        const remote_url = `https://webrtc-back1.herokuapp.com/peers`
+        fetch(remote_url)
             .then(res => res.json())
             .then(data => { console.log(data.allPeers); setListPeers(data.allPeers) })
 
