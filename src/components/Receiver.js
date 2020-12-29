@@ -1,11 +1,13 @@
 import React from 'react'
 
-const TEst = () => {
+
+
+const Receiver = () => {
     return (
         <div>
-            <h1>just wait here</h1>
+
         </div>
     )
 }
 
-export default TEst
+export default Receiver

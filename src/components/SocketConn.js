@@ -1,24 +1,38 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import socketIoClient from "socket.io-client";
 
-const socket_client = socketIoClient("http://localhost:5000");
-socket_client.on("connect", data => {
-    console.log("I am conneted to the server")
-})
 
-socket_client.on("hello", data => {
-    console.log("this data is received from the server: " + data)
-})
+const socketUrl = 'http://localhost:5000';
+
+
 
 const SocketConn = () => {
+    let socket = useRef(null);
+
+
+    // connection effect 
     useEffect(() => {
+        socket.current = socketIoClient(socketUrl, {
+            autoConnect: true,
+        });
+
+        socket.current.on("connect", data => {
+            console.log("=> I am conneted to the server")
+        })
 
 
+
+        // clean up function
         return () => {
-            socket_client.close()
+            socket.current.close();
 
         }
-    }, [])
+
+    }, []);
+
+
+
+
 
 
     return (

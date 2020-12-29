@@ -1,8 +1,9 @@
 import { Router } from "@reach/router"
 import SimplePeer from "simple-peer";
 import Home from "./components/Home";
+import Peerjs from "./components/Peerjs";
 import SocketConn from "./components/SocketConn"
-import TEst from "./components/test"
+import WaitHere from "./components/WaitHere"
 
 
 function App() {
@@ -10,8 +11,9 @@ function App() {
     <Router>
       <Home path="/" />
       <SimplePeer path="/simple" />
+      <Peerjs path="/peerjs" />
       <SocketConn path="/socket" />
-      <TEst path="/socke" />
+      <WaitHere path="/socke" />
     </Router>
 
   );
