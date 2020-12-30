@@ -22,6 +22,7 @@ const Peerjs = () => {
             host: "https://webrtc-back1.herokuapp.com",
             port: 443,
             path: "/peerjs",
+            secure: true
 
         })
         peer.current.on("open", id => {
