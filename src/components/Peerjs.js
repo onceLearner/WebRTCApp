@@ -17,10 +17,11 @@ const Peerjs = () => {
 
     useEffect(() => {
         // getlistPeers();
-
+        let remoteObj = { url: `https://webrtc-back1.herokuapp.com`, port: 25877 }
+        let localObj = { url: `https://webrtc-back1.herokuapp.com`, port: 25877 }
         peer.current = new Peer(localPeer, {
-            host: "https://webrtc-back1.herokuapp.com",
-            port: 25877,
+            host: "peerjs-server.herokuapp.com",
+            port: 443,
             path: "/peerjs",
             secure: true
 
