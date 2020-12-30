@@ -20,7 +20,7 @@ const Peerjs = () => {
 
         peer.current = new Peer(localPeer, {
             host: "https://webrtc-back1.herokuapp.com",
-            port: 25877,
+            port: 443,
             path: "/peerjs",
 
         })
