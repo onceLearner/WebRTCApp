@@ -23,7 +23,7 @@ const Peerjs = () => {
             host: remoteObj.url,
             port: 443,
             path: "/peerjs",
-            debug: 3,
+            // debug: 3,
 
             secure: true
 
@@ -32,16 +32,6 @@ const Peerjs = () => {
             console.log(`connected to peerServer, my Id is : ${id}`)
 
         })
-
-
-        // answer the call 
-
-
-
-
-
-
-
 
 
         return () => {
@@ -77,10 +67,14 @@ const Peerjs = () => {
     }
 
     const callPeer = (peerId) => {
+        setLocalPeer(localPeer)
         console.log('let call him :')
         navigator.mediaDevices.getUserMedia({ video: true, audio: true })
             .then(stream => {
                 console.log('trying to call him ................')
+                const dataconn = peer.current.connect(peerId);
+
+                console.log(dataconn)
 
                 const call = peer.current.call(peerId, stream);
 
@@ -89,7 +83,20 @@ const Peerjs = () => {
                     // Show stream in some <video> element.
                     const video = document.querySelector('video');
                     video.srcObject = remoteStream;
-                    video.play();
+                    // Show loading animation.
+                    var playPromise = video.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            // Automatic playback started!
+                            // Show playing UI.
+                        })
+                            .catch(error => {
+                                // Auto-play was prevented
+                                // Show paused UI.
+                                console.error(error)
+                            });
+                    }
 
                 });
             }).catch((err) => console.error(err));
